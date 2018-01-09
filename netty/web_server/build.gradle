@@ -1,0 +1,22 @@
+apply plugin: 'java'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+	compile group: 'io.netty', name: 'netty-all', version: '4.1.19.Final'
+}
+
+jar {
+    baseName = 'web_server'
+    version =  '0.0.1'
+
+    from configurations.compile.collect{it.isDirectory()?it:zipTree(it)}
+    
+    manifest {
+        attributes 'Main-Class': 'com.alex.netty.ws.WebServer'
+    }
+}
+
