@@ -32,7 +32,7 @@ public class Ex1_4 {
         Thread task = new PrimeGenerator();
         task.start();
         try {
-            Thread.sleep(5000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
