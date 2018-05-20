@@ -1,0 +1,30 @@
+apply plugin: 'java'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+	compile group: 'org.springframework', name: 'spring-core', version: '5.0.4.RELEASE'
+	compile group: 'org.springframework', name: 'spring-context', version: '5.0.4.RELEASE'
+	compile group: 'org.springframework', name: 'spring-aspects', version: '5.0.4.RELEASE'
+    compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.8.13'
+	compile group: 'org.springframework', name: 'spring-aop', version: '5.0.4.RELEASE'
+}
+
+jar {
+    baseName = 'knight'
+    version =  '0.0.1'
+
+    // from configurations.compile.collect{it.isDirectory()?it:zipTree(it)}
+    // 不要解压，直接打包第三方jar文件
+    // from configurations.compile.collect{it}
+    
+    manifest {
+        // 使用repo的全路径，并没有包含到jar文件中，可以查看jar文件的元数据描述
+        attributes 'Main-Class': 'com.alex.spring.knight.KnightMain', 'Class-Path': configurations.compile.files.collect {it.toURI()}.join(' ')
+    }
+}
+
+

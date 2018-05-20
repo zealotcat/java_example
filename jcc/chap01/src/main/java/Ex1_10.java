@@ -42,6 +42,7 @@ public class Ex1_10 {
     }
 
     public static void main(String[] args) {
+        /*
         UnsafeTask unsafeTask = new UnsafeTask();
         for(int i = 0; i < 3; i++) {
             Thread thread = new Thread(unsafeTask);
@@ -53,6 +54,7 @@ public class Ex1_10 {
                 e.printStackTrace();
             }
         }
+        */
 
         SafeTask safeTask = new SafeTask();
         for(int i = 0; i < 3; i++) {

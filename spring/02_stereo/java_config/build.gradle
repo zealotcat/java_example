@@ -1,0 +1,22 @@
+apply plugin: 'java'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.springframework', name: 'spring-core', version: '5.0.4.RELEASE'
+    compile group: 'org.springframework', name: 'spring-context', version: '5.0.4.RELEASE'
+}
+
+jar {
+    baseName = 'stereo'
+    version =  '0.0.1'
+
+    from configurations.compile.collect{it.isDirectory()?it:zipTree(it)}
+    
+    manifest {
+        attributes 'Main-Class': 'com.alex.spring.stereo.Main'
+    }
+}
